@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author carlosf
+ * @author carlosv
  */
  /*Descripcion: Clase utilizada para encontrar la ruta del properties, es decir la ruta del archivo que tiene la informacion
   * de acceso a la base de datos.

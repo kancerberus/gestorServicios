@@ -17,7 +17,7 @@ import modelo.Usuario;
 
 /**
  *
- * @author Andres
+ * @author carlosv
  */
 public class UsuarioDAO {
 

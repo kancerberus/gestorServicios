@@ -7,7 +7,7 @@ package modelo;
 
 /**
  *
- * @author Andres
+ * @author carlosv
  */
 public class Sesion {
     private Usuario usuario;

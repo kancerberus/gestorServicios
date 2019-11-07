@@ -19,7 +19,7 @@ import util.Utilidades;
 
 /**
  *
- * @author Andres
+ * @author carlosv
  */
 public class UILogin implements Serializable {
 

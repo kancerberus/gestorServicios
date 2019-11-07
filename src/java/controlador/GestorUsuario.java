@@ -12,7 +12,7 @@ import modelo.Menu;
 
 /**
  *
- * @author Andres
+ * @author carlosv
  */
 public class GestorUsuario extends Gestor {
 

@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 
 /**
  *
- * @author carlosp
+ * @author carlosv
  */
 public class Propiedades {
 

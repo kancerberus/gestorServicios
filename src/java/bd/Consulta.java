@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author carlosp
+ * @author carlosv
  */
  /*Descripcion: Clase generica para las utilidades de las consultas o transacciones del sistema
   * utilizado solo para las consultas que utilicen Gestor.java

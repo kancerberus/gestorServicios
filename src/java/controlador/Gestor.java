@@ -10,7 +10,7 @@ import modelo.Propiedades;
 
 /**
  *
- * @author carlosp
+ * @author carlosv
  */
  /*Descripcion: Clase abstracta para que el controlador permita controlar las conexiones en base de datos
   * 
