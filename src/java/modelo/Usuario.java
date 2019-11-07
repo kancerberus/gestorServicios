@@ -10,6 +10,7 @@ package modelo;
  * @author JuanVilla
  */
 public class Usuario {
+    private String usuario;
     private String nom_usuario;
     private Perfil perfil;
     private String cargo_usuario;
@@ -50,6 +51,13 @@ public class Usuario {
     public void setCorreo_usuario(String correo_usuario) {
         this.correo_usuario = correo_usuario;
     }
-    
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }    
     
 }

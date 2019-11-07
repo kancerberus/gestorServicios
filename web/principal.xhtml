@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"     
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <head>
+        <title>GESTION CONJUNTOS RESIDENCIALES</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>        
+        <script type="text/javascript">
+        //<![CDATA[    
+        function MM_swapImgRestore() { //v3.0
+            var i, x, a = document.MM_sr;
+            for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+                x.src = x.oSrc;
+        }
+
+        function MM_preloadImages() { //v3.0
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p)
+                    d.MM_p = new Array();
+                var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+                    if (a[i].indexOf("#") !== 0) {
+                        d.MM_p[j] = new Image;
+                        d.MM_p[j++].src = a[i];
+                    }
+            }
+        }
+
+        function MM_findObj(n, d) { //v4.01
+            var p, i, x;
+            if (!d)
+                d = document;
+            if ((p === n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document;
+                n = n.substring(0, p);
+            }
+            if (!(x = d[n]) && d.all)
+                x = d.all[n];
+            for (i = 0; !x && i < d.forms.length; i++)
+                x = d.forms[i][n];
+            for (i = 0; !x && d.layers && i < d.layers.length; i++)
+                x = MM_findObj(n, d.layers[i].document);
+            if (!x && d.getElementById)
+                x = d.getElementById(n);
+            return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var x, i, j = 0, a = MM_swapImage.arguments;
+            document.MM_sr = new Array;
+            for (i = 0; i < (a.length - 2); i += 3)
+                if ((x = MM_findObj(a[i])) !== null) {
+                    document.MM_sr[j++] = x;
+                    if (!x.oSrc)
+                        x.oSrc = x.src;
+                    x.src = a[i + 2];
+                }
+        } 
+        //]]>
+    </script>    
+        <link href="main.css" rel="stylesheet" type="text/css" />          
+            
+        <body onload="MM_preloadImages('./pagarriba_data/logeo-logo.png', './pagarriba_data/inicio2.png', './pagarriba_data/salida2.png', './pagarriba_data/configuracion2.png');">
+            <div id="base">
+                <div id="dintel"> 
+                    <div id="logo"></div>     	
+                        <div id="menu">
+                            <form id="pagArriba" name="pagArriba" method="post" action="/pagarriba.xhtml" enctype="application/x-www-form-urlencoded">
+                
+            <input name="pagArriba" value="pagArriba" type="hidden">
+              
+              <a href="#" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('Imagen1', '', './pagarriba_data/inicio.png',1);" 
+                 onclick="jsf.util.chain(this,event,'parent.location = \'principal.xhtml\';','mojarra.jsfcljs(document.getElementById(\'pagArriba\'),{\'pagArriba:j_id5\':\'pagArriba:j_id5\'},\'\')');return false">
+                                            <img src="pagarriba_data/inicio2.png" alt="Inicio" name="Imagen1" id="Imagen1" height="56" border="0" width="56"></img></a>
+
+              <a href="#" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('Imagen2', '', './pagarriba_data/salida.png',1);" 
+                 onclick="jsf.util.chain(this,event,'parent.location = \'../sicehc/principal.xhtml\';','mojarra.jsfcljs(document.getElementById(\'pagArriba\'),{\'pagArriba:j_id5\':\'pagArriba:j_id5\'},\'\')');return false">
+                                            <img src="pagarriba_data/salida2.png" alt="Inicio" name="Imagen2" id="Imagen1" height="56" border="0" width="56"></img></a>							
+
+              <a href="#" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('Imagen3', '', './pagarriba_data/configuracion.png', 1);" 
+                 onclick="jsf.util.chain(this,event,'parent.mainFrame.location = \'../saga/configuracion/configuracionActivos.xhtml\';','mojarra.jsfcljs(document.getElementById(\'pagArriba\'),{\'pagArriba:j_id7\':\'pagArriba:j_id7\'},\'\')');return false">                             
+                                             <img src="pagarriba_data/configuracion2.png" alt="Inicio" name="Imagen3" id="Imagen3" height="56" border="0" width="56"></img></a>
+
+
+            <input name="javax.faces.ViewState" id="javax.faces.ViewState" value="4636363682623317424:5348404676687994644" autocomplete="off" type="hidden"/>
+           
+           </input>
+            </form>         
+                </div>            
+                    </div>
+                        </div>   
+        </body>
+        
+        <h:head>
+        <h:body>
+        <h:outputStylesheet name="general.css"/>        
+        <table>
+            <tr>
+                <!-- primera columna -->
+                <td valign="top">
+                    <h:form id="formMenu">
+                        <p:growl id="messages"/>
+                        <h:panelGroup id="pnlMenu">                                                                                    
+                            <!--aqui menu -->
+                            <p:panelMenu style="width:200px">
+                                <c:forEach items="#{loginBean.listaMenu}" var="menu">
+                                    <p:submenu label="#{menu.etiqueta}" >
+                                        <c:forEach items="#{menu.listaSubMenu}" var="subMenu">
+                                            <p:menuitem value="#{subMenu.etiqueta}" update="pnlPrincipal" ajax="false" icon="#{subMenu.imagen}" actionListener="#{gestorPrincipal.selGeneral(subMenu.opcion)}" />
+                                        </c:forEach>
+                                    </p:submenu>
+                                </c:forEach>
+                                                                   
+                                <p:submenu label="Sesion" >
+                                    <p:menuitem value="Cerrar sesion"  action="#{loginBean.cerrarSesion()}" icon="ui-icon-power"/>                                    
+                                </p:submenu>
+
+                            </p:panelMenu>
+                        </h:panelGroup>
+                    </h:form>
+                </td>
+
+               <!--aquisegunda columna-->
+               <td valign="top" rowspan="2">
+
+                   <h:form>
+                    <h:panelGroup id="pnlPrincipal">
+
+                        <h:panelGroup rendered="#{gestorPrincipal.nuevaVivienda}">
+                            <ui:include src="prueba.xhtml"></ui:include>
+                        </h:panelGroup>                         
+                        
+                    </h:panelGroup>
+                  </h:form>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <h:form id="formStatus">
+                        <p:panel id="status" style="display: block; margin-left: 0%; width:200px">
+                            <table>
+                                
+                                <tr><td>
+                                       <b>Usuario:</b><p:outputLabel id="username" value="#{loginBean.sesion.usuario.usuario}"/>                                        
+                                </td></tr>                                                              
+                                
+                                <tr><td>                                        
+                                       <b>Nombre:</b><p:outputLabel value="#{loginBean.sesion.usuario.nombre}"/>
+                                </td></tr>
+                                
+                                <tr><tr><td>
+                                        <p:clock pattern="dd/MM/yyyy HH:mm:ss" mode="server" />
+                                </td></tr></tr>
+                                
+                            </table>
+                        </p:panel>
+                    </h:form>
+                </td>
+            </tr>
+        </table>        
+    </h:body> 
+   </h:head>     
+  </head>      
+</html>

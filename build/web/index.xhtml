@@ -1,12 +1,65 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
 
+<!DOCTYPE html>
+<html lang="en" class="no-js"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Gestor Servicios</title>        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+               
+
+    </h:head>
+
+    <h:body onload="setFoco('username')">
+
+        <div class="page-container">
+            <h1>PRUEBA JUAN VILLA</h1>
+            <h1>SOLUTECH</h1>  
+            <br></br>
+            <br></br>            
+            <h:form>
+                    <p:growl id="growl" sticky="false" showDetail="true" life="5000" />
+                    <input name="pagIndex" value="pagIndex" type="hidden" />
+                    <table border="0" cellpadding="10">
+                        
+                        <tr><td>                                
+                                <h:outputLabel for="username" value="Usuario:   " />
+                            </td>
+                            <td>
+                                <p:inputText id="username" value="#{loginBean.usuario}" required="true" label="username" />
+                            </td>
+                        </tr>
+                        <tr><td>                                
+                                <h:outputLabel for="password" value="Clave:   "/>
+                            </td>
+                            <td>
+                                <p:password id="password" value="#{loginBean.clave}" required="true" label="password" />
+                            </td>
+                        </tr>
+                        <br></br>
+                        <br></br>                        
+                        <tr>
+                            <td colspan="2" align="center">
+                                <p:commandButton value="Entrar" update="growl" actionListener="#{loginBean.Ingresar}"  >
+                                    
+                                </p:commandButton>
+                            </td>
+                        </tr>
+                    </table>                   
+            </h:form>
+            <div class="connect">
+                
+                <p>Versión: 1.0.0</p>
+                <p>Fecha: 06/11/2019</p>
+                <div class="connect"/>
+            </div>
+        </div>
+
+    </h:body>
+
+</html>
