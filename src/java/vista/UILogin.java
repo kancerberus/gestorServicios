@@ -33,14 +33,13 @@ public class UILogin implements Serializable {
 
     public UILogin() {        
         sesion = new Sesion();
-        sesion.setUsuario(new Usuario());
+        sesion.setUsuario(new Usuario());        
     }
 
     public void Ingresar() throws Exception {
         try {
             FacesContext contextoJSF = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) contextoJSF.getExternalContext().getSession(false);           
-            //HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
         } catch (Exception e) {

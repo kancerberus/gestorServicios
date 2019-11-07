@@ -23,7 +23,7 @@ public class Propiedades {
         ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         GestorPropiedades gestorPropiedades = new GestorPropiedades();
         try {
-            propiedades = gestorPropiedades.cargarPropiedades(context.getRealPath("/WEB-INF/classes/configuracion.properties"));
+            propiedades = gestorPropiedades.cargarPropiedades(context.getRealPath("/WEB-INF/configuracion.properties"));
         } catch (Exception e) {
         }
     }

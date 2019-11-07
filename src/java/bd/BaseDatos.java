@@ -1,8 +1,9 @@
 package bd;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 import modelo.Propiedades;
@@ -49,6 +50,8 @@ public class BaseDatos {
             props.setProperty("loglevel","2");               
         return java.sql.DriverManager.getConnection(propiedades.getProperty("urlbd"),props);
     }
+    
+    
 
     public void desconectar() {
         if (query != null) {
@@ -94,6 +97,10 @@ public void ejecutar(Connection conexion, String sql) throws SQLException {
         int totalRegistros = 0;
         totalRegistros = query.executeUpdate(sql);
         return totalRegistros;
+    }
+    
+        public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return conexion.prepareStatement(sql);
     }
 
 }

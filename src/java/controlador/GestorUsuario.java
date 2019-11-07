@@ -7,6 +7,7 @@ package controlador;
 
 import modelo.Usuario;
 import bd.UsuarioDAO;
+import java.io.Serializable;
 import java.util.List;
 import modelo.Menu;
 
@@ -14,9 +15,9 @@ import modelo.Menu;
  *
  * @author carlosv
  */
-public class GestorUsuario extends Gestor {
+public class GestorUsuario extends Gestor implements Serializable {
 
-    public GestorUsuario() throws Exception {
+    public GestorUsuario() throws Exception{
         super();
     }
 
