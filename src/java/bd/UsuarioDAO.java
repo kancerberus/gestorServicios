@@ -35,16 +35,15 @@ public class UsuarioDAO {
         Perfil p = null;
         try {
             consulta = new Consulta(getConexion());
-            sql = "select u.usuario,u.nombre,u.id,u.cod_perfil,c.cod_conjunto,c.nom_conjunto,p.nombre perfil from "
+            sql = "select u.usuario,u.nombre,u.id,u.cod_perfil,p.nombre perfil from "
                     + " usuarios u "
                     + " inner join perfiles p using (cod_perfil) "
-                    + " inner join conjuntos c on (fk_cod_conjunto=cod_conjunto)"
                     + " where usuario='" + usuario.trim() + "' and clave=md5('" + clave.trim() + "');";
             rs = consulta.ejecutar(sql);
             if (rs.next()) {
                 u = new Usuario();
                 u.setUsuario(rs.getString("usuario"));
-                u.setNom_usuario(rs.getString("nombre"));                
+                u.setNom_completo(rs.getString("nombre"));                
                 
                 p = new Perfil();
                 p.setCod_perfil(rs.getString("cod_perfil"));

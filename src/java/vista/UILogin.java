@@ -61,21 +61,7 @@ public class UILogin implements Serializable {
             throw new RuntimeException("No se pudo redireccionar la página");
         }
     }
-/*
-    public void cerrarSesion() {
-        try {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            HttpSession s = (HttpSession) fc.getExternalContext().getSession(false);
-            s.invalidate();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("./../");
-        } catch (IOException ex) {
-            throw new RuntimeException("No se pudo redireccionar la página");
-        }
-    }
-*/
-    /**
-     * @return the usuario
-     */
+
     public String getUsuario() {
         return usuario;
     }

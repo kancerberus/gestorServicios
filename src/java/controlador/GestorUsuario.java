@@ -24,7 +24,7 @@ public class GestorUsuario extends Gestor implements Serializable {
     public Usuario validarUsuario(String usuario, String clave) throws Exception {
         try {
             abrirConexion();
-            UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+            UsuarioDAO usuarioDAO  = new UsuarioDAO(conexion);
             return usuarioDAO.validarUsuario(usuario, clave);
         } finally {
             cerrarConexion();

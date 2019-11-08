@@ -11,7 +11,7 @@ package modelo;
  */
 public class Usuario {
     private String usuario;
-    private String nom_usuario;
+    private String nom_completo;
     private Perfil perfil;
     private String cargo_usuario;
     private String correo_usuario;
@@ -20,12 +20,12 @@ public class Usuario {
         perfil = new Perfil();
     }
 
-    public String getNom_usuario() {
-        return nom_usuario;
+    public String getNom_completo() {
+        return nom_completo;
     }
 
-    public void setNom_usuario(String nom_usuario) {
-        this.nom_usuario = nom_usuario;
+    public void setNom_completo(String nom_completo) {
+        this.nom_completo = nom_completo;
     }
 
     public Perfil getPerfil() {
