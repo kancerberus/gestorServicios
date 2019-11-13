@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import modelo.Menu;
 import modelo.Sesion;
-import modelo.Usuario;
+import modelo.Usuarios;
 import util.Utilidades;
 
 /**
@@ -33,7 +33,7 @@ public class UILogin implements Serializable {
 
     public UILogin() {        
         sesion = new Sesion();
-        sesion.setUsuario(new Usuario());        
+        sesion.setUsuario(new Usuarios());        
     }
 
     public void Ingresar() throws Exception {
@@ -47,7 +47,7 @@ public class UILogin implements Serializable {
         }
         try {
             gestorUsuario = new GestorUsuario();
-            Usuario u = gestorUsuario.validarUsuario(usuario, clave);
+            Usuarios u = gestorUsuario.validarUsuario(usuario, clave);
             sesion.setUsuario(u);
             if(u!=null){
                 setListaMenu(gestorUsuario.listarOpcionesMenu(usuario));

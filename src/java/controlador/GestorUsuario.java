@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import modelo.Usuario;
+import modelo.Usuarios;
 import bd.UsuarioDAO;
 import java.io.Serializable;
 import java.util.List;
@@ -21,7 +21,7 @@ public class GestorUsuario extends Gestor implements Serializable {
         super();
     }
 
-    public Usuario validarUsuario(String usuario, String clave) throws Exception {
+    public Usuarios validarUsuario(String usuario, String clave) throws Exception {
         try {
             abrirConexion();
             UsuarioDAO usuarioDAO  = new UsuarioDAO(conexion);

@@ -18,12 +18,12 @@ public class ServicioTecnico {
     private String cod_incidencia;
     private String fecha_incidencia;
     private String hora_incidencia;
-    private Usuario nom_usuario;
+    private Usuarios nom_usuario;
     private TipoAtencion cod_atencion; 
     
     public ServicioTecnico(){
             cod_atencion = new TipoAtencion();
-            nom_usuario = new Usuario();
+            nom_usuario = new Usuarios();
     }
 
     public String getInf_tec_realizada() {
@@ -66,11 +66,11 @@ public class ServicioTecnico {
         this.hora_incidencia = hora_incidencia;
     }
 
-    public Usuario getNom_usuario() {
+    public Usuarios getNom_usuario() {
         return nom_usuario;
     }
 
-    public void setNom_usuario(Usuario nom_usuario) {
+    public void setNom_usuario(Usuarios nom_usuario) {
         this.nom_usuario = nom_usuario;
     }
 
