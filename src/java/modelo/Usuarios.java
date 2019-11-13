@@ -9,15 +9,24 @@ package modelo;
  *
  * @author JuanVilla
  */
-public class Usuario {
+public class Usuarios {
     private String usuario;
     private String nom_completo;
     private Perfil perfil;
     private String cargo_usuario;
     private String correo_usuario;
+    private String clave;
     
-    public Usuario(){
+    public Usuarios(){
         perfil = new Perfil();
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getNom_completo() {
@@ -52,12 +61,12 @@ public class Usuario {
         this.correo_usuario = correo_usuario;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getClave() {
+        return clave;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }    
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
     
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import modelo.Menu;
 import modelo.Perfil;
 import modelo.SubMenu;
-import modelo.Usuario;
+import modelo.Usuarios;
 
 /**
  *
@@ -27,11 +27,11 @@ public class UsuarioDAO {
         this.conexion = conexion;
     }
 
-    public Usuario validarUsuario(String usuario, String clave) throws SQLException {
+    public Usuarios validarUsuario(String usuario, String clave) throws SQLException {
         Consulta consulta = null;
         ResultSet rs;
         String sql;
-        Usuario u = null;
+        Usuarios u = null;
         Perfil p = null;
         try {
             consulta = new Consulta(getConexion());
@@ -41,7 +41,7 @@ public class UsuarioDAO {
                     + " where usuario='" + usuario.trim() + "' and clave=md5('" + clave.trim() + "');";
             rs = consulta.ejecutar(sql);
             if (rs.next()) {
-                u = new Usuario();
+                u = new Usuarios();
                 u.setUsuario(rs.getString("usuario"));
                 u.setNom_completo(rs.getString("nombre"));                
                 

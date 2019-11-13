@@ -10,24 +10,24 @@ package modelo;
  * @author carlosv
  */
 public class Sesion {
-    private Usuario usuario;
+    private Usuarios usuario;
 
     
     public Sesion(){
-        usuario = new Usuario();
+        usuario = new Usuarios();
     }
 
     /**
      * @return the usuario
      */
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
     /**
      * @param usuario the usuario to set
      */
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 
