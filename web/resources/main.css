@@ -1,0 +1,189 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+body { 
+font-family: Tahoma, Verdana;
+font-size: 16px;
+color:#333;
+background-image:url(pagarriba_data/fondo.jpg);
+background-position:top;
+background-repeat:repeat-x;
+background-color:#e4e7e9;
+}
+
+#base {
+margin:  0 auto ;
+width:980px;;
+height:auto;
+}
+
+#dintel{
+position: relative;
+width:100%;
+height:122px;
+background-image:url(pagarriba_data/fondo-dintel.png);
+background-position:top center;
+background-repeat:no-repeat;
+}
+
+#logo{
+position: absolute;
+width:545px;
+height:122px;
+background-image:url(pagarriba_data/logo.png);
+background-position:top left;
+background-repeat:no-repeat;
+}
+
+#menu{
+position: relative;
+width:400px;
+height:30px;
+float:right;
+text-align:right;
+vertical-align:top;
+margin-top:50px;
+}
+
+#menu a{
+	margin-left:7px;
+	margin-right:7px;
+}
+
+#contenedor {
+position:relative;
+padding: 4px 3px 7px 7px;
+margin-top:7px;
+margin-bottom:7px;
+height:auto;
+width:100%;
+float: left;
+}
+
+#contenido{
+width:96%;
+height:100%;
+padding-left:23px;
+padding-top:17px;
+padding-right:17px;
+text-align:justify;
+float:left;
+background-color:#F2F7FF;
+font-size: 10px;
+
+/*Estilo para los Bordes*/
+border-width: 2px;
+border-style: solid;
+border-color:#ccc;
+
+/*bordes redondos*/
+border-radius: 7px;
+-ms-border-radius: 7px;
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+-khtml-border-radius: 7px;
+}
+
+#input{
+background-image:url(pagarriba_data/fondo-imput.jpg);
+background-repeat:repeat-x;
+background-color:#fff;
+height:30px;
+color:#06C;
+letter-spacing:1pt;
+font-weight:bold;
+padding-left:7px;
+padding-right:7px;
+
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border:1px solid rgba(0,0,0,0.4);
+}
+
+#combo {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: normal;
+    background-color: #e3f5f7;
+    background-position: center center;
+    height: 18px;
+    width: 140px;
+    color: #011f23;
+}
+
+#columna-izquierda{
+width:180px;
+height:80%;
+padding-left:10px;
+padding-top:10px;
+padding-right:10px;
+text-align:left;
+float:left;
+background-color:#F2F7FF;
+
+
+/*Estilo para los Bordes*/
+border-width: 2px;
+border-style: solid;
+border-color:#ccc;
+
+/*bordes redondos*/
+border-radius: 7px;
+-ms-border-radius: 7px;
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+-khtml-border-radius: 7px;
+}
+
+UL{
+margin-left:7pt;
+}
+
+
+H1{
+color: #056da9;
+font-size:14pt;
+font-weight: bold;
+}
+
+
+H2{
+color: #04a5b4;
+font-size:13pt;
+font-weight: bold;
+}
+
+H3{
+color:#18a16f;
+font-size: 11pt;
+font-weight: bold;
+}
+
+H5{
+color: #0066CC;
+font-size: 9pt;
+}
+
+#footer {
+width:980px;;
+height: 17px;
+clear: both; 
+color: #333;
+padding-top: 7px;
+padding-bottom:7px;
+margin-bottom:7px;
+}
+
+#copy{
+margin-left: 17px;
+width:700px;
+float:left;
+
+}
+

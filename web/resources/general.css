@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-ago-2015, 13:03:35
+    Author     : Andres
+*/
+body {
+    background-image: url(../resources/imagenes/fondo3.jpg);
+    background-size: 90% auto;
+}
+
+.tablasinborde.ui-panelgrid>*>tr,
+.tablasinborde.ui-panelgrid .ui-panelgrid-cell td{
+    border: 0px;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 90%;
+}
+
+.Info {
+    color: #000000;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    text-align:center;
+}
+.Warning {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.Error {
+    color: #FF0000;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablafondo tr{
+    background-color: #C1E1F7;
+    color: white;
+}
+
+.eventoConCita  {
+    background-color: #E5973E;
+}
+
+.eventoSinCita  {
+    background-color: #58D255;
+}
