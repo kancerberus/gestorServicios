@@ -17,7 +17,7 @@ public class GestorPrincipal implements Serializable {
     private boolean registroInventario = false;
     private boolean registroActas = false;
     private boolean registroClientes = false;
-    private boolean registroUsuarios = false;
+    private boolean registroUsuario = false;
     private boolean registroModelos = false;
     private boolean registroMarcas = false;
     private boolean consultarServicio = false;
@@ -52,7 +52,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "registro_actas":
+            case "reg_acta":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(true);
@@ -63,7 +63,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "registro_cliente":
+            case "reg_cliente":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -74,7 +74,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "registro_usuarios":
+            case "reg_usuario":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -85,7 +85,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "registro_modelos":
+            case "reg_modelo":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -96,7 +96,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "registro_marcas":
+            case "reg_marca":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -107,7 +107,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(false);
                 setConsultarDispositivo(false);
                 break;
-            case "consultar_servicio":
+            case "cons_servicio":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -118,7 +118,7 @@ public class GestorPrincipal implements Serializable {
                 setConsultarServicio(true);
                 setConsultarDispositivo(false);
                 break;
-            case "consultar_dispositvo":
+            case "cons_dispositvo":
                 setRegistroAcceso(false);
                 setRegistroInventario(false);
                 setRegistroActas(false);
@@ -166,11 +166,11 @@ public class GestorPrincipal implements Serializable {
     }
 
     public boolean isRegistroUsuarios() {
-        return registroUsuarios;
+        return registroUsuario;
     }
 
     public void setRegistroUsuarios(boolean registroUsuarios) {
-        this.registroUsuarios = registroUsuarios;
+        this.registroUsuario = registroUsuarios;
     }
 
     public boolean isRegistroModelos() {

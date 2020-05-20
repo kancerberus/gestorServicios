@@ -1,47 +1,41 @@
 package bd;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 import modelo.Propiedades;
 
+
 /**
  *
- * @author carlosv
+ * @author carlosp
  */
-
+ /*Descripcion: Clase de Base de datos donde de acuerdo a esta implementación se puede realizar por medio de dos llamados:
+  * 1. Definiendo en cada clase DAO por medio de herencia la clase GestorBD.java
+  * 2. Definiendo en cada clase DAO por medio de la clase Gestor que se encuentra en los paquetes del controlador
+  */
 public class BaseDatos {
 
     private Properties propiedades;
-    private Statement query;
+    
+     /** Field description */
     private Connection conexion;
+
+    /** Field description */
+    private Statement query;
+
+    /** Field description */
     private String url = "";
-
-
 
     public BaseDatos(Properties propiedades) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         String controlador = propiedades.getProperty("controlador");
         Class.forName(controlador).newInstance();
         this.propiedades = propiedades;
     }
-    
-        public BaseDatos() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        String controlador = "org.postgresql.Driver";
-        Class.forName(controlador).newInstance();
-    }
 
-
-
-    public void conectar(String usuario, String clave, String servidor, String puerto, String basedatos) throws SQLException {
-
-    String url = "jdbc:postgresql://"+servidor+":"+puerto+"/"+basedatos+"";
-    conexion = java.sql.DriverManager.getConnection(url, usuario, clave);
-    query = conexion.createStatement();
-    }
-    
     public Connection getConexion() throws SQLException {
         Properties props = new Properties();
         props.setProperty("user",propiedades.getProperty("usuario"));
@@ -50,37 +44,12 @@ public class BaseDatos {
             props.setProperty("loglevel","2");               
         return java.sql.DriverManager.getConnection(propiedades.getProperty("urlbd"),props);
     }
-    
-    
 
-    public void desconectar() {
-        if (query != null) {
-            try {
-                query.close();
-            } catch (SQLException e) {
-            }
-           query = null;
-        }
-
-        if (conexion != null) {
-            try {
-                conexion.close();
-            } catch (SQLException e) {
-            }
-            conexion = null;
-        }
+     public BaseDatos() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        String controlador = "org.postgresql.Driver";
+        Class.forName(controlador).newInstance();
     }
-
-    
-
-    public void abrirConexion(String usuario) throws SQLException {
-        query = conexion.createStatement();
-        query.executeUpdate("set role=" + usuario + ";");       
-    }    
-
-
-
-public void ejecutar(Connection conexion, String sql) throws SQLException {
+    public void ejecutar(Connection conexion, String sql) throws SQLException {
         Statement consulta = conexion.createStatement();
         try {
             consulta.executeUpdate(sql);
@@ -92,16 +61,119 @@ public void ejecutar(Connection conexion, String sql) throws SQLException {
             }
         }
     }
+     //~--- methods ------------------------------------------------------------
 
+    /**
+     * Method description
+     *
+     *
+     * @param sql
+     *
+     * @return
+     *
+     * @throws SQLException
+     */
     public int actualizar(String sql) throws SQLException {
         int totalRegistros = 0;
+
         totalRegistros = query.executeUpdate(sql);
         return totalRegistros;
     }
-    
-        public PreparedStatement prepareStatement(String sql) throws SQLException {
-        return conexion.prepareStatement(sql);
+
+    /**
+     * Method description
+     *
+     *
+     * @param sql
+     * @param colnames
+     *
+     * @return
+     *
+     * @throws SQLException
+     */
+    public int actualizar(String sql, String[] colnames) throws SQLException {
+        int totalRegistros = 0;
+
+        totalRegistros = query.executeUpdate(sql, colnames);
+        return totalRegistros;
     }
 
-}
+    /**
+     * Method description
+     *
+     *
+     * @param usr
+     * @param pwd
+     *
+     * @throws SQLException
+     */
+    public void conectar(String usr, String pwd) throws SQLException {
 
+//      url = "jdbc:postgresql://" + SERVIDOR + ":" + PUERTO + "/" + BD;
+      //url = "jdbc:postgresql://10.1.1.196:5430/dbsa";
+      //url = "jdbc:postgresql://10.1.1.195:5432/dbcaf";
+       // url = "jdbc:postgresql://10.1.1.197:6432/dbsa";
+
+        //pruebas vieja
+       url = "jdbc:postgresql://10.1.1.197:6432/dbsa";
+      // url = "jdbc:postgresql://10.1.1.84:4489/dbsa";
+
+
+        // url = "jdbc:postgresql://192.168.56.101:5432/dbcaf";
+        conexion = java.sql.DriverManager.getConnection(url, usr, pwd);
+//        AuditoriaRegistro.setActivo(true);
+//        AuditoriaRegistro.setUltimaActualizacion(new Date(new java.util.Date().getTime()));
+//        AuditoriaRegistro.setUsuarioActualiza(usr);
+        query = conexion.createStatement();
+    }
+
+    /**
+     * Method description
+     *
+     */
+    public void desconectar() {
+        if (query != null) {
+            try {
+                query.close();
+            } catch (SQLException e) {}
+
+            query = null;
+        }
+
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (SQLException e) {}
+
+            conexion = null;
+        }
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param sql
+     *
+     * @return
+     *
+     * @throws SQLException
+     */
+    public ResultSet ejecutar(String sql) throws SQLException {
+        return query.executeQuery(sql);
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param sql
+     *
+     * @return
+     *
+     * @throws SQLException
+     */
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return conexion.prepareStatement(sql);
+    }
+}

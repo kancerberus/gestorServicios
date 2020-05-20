@@ -72,27 +72,31 @@ and open the template in the editor.
                             <ui:include src="reg_inventario.xhtml"></ui:include>
                         </h:panelGroup>
                         
-                          <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
+                        <h:panelGroup rendered="#{gestorPrincipal.registroActas}">
                             <ui:include src="reg_acta.xhtml"></ui:include>
                         </h:panelGroup>   
                         
+                         <h:panelGroup rendered="#{gestorPrincipal.registroUsuarios}">
+                            <ui:include src="reg_usuario.xhtml"></ui:include>
+                        </h:panelGroup> 
+                        
                         <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
-                            <ui:include src="reg_clientes.xhtml"></ui:include>
+                            <ui:include src="reg_cliente.xhtml"></ui:include>
                         </h:panelGroup>      
                         
-                        <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
-                            <ui:include src="reg_usuarios.xhtml"></ui:include>
-                        </h:panelGroup>                         
-                        
-                        <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
+                        <h:panelGroup rendered="#{gestorPrincipal.registroModelos}">
                             <ui:include src="reg_modelo.xhtml"></ui:include>
                         </h:panelGroup>     
                         
-                        <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
+                        <h:panelGroup rendered="#{gestorPrincipal.registroMarcas}">
+                            <ui:include src="reg_marca.xhtml"></ui:include>
+                        </h:panelGroup> 
+                        
+                        <h:panelGroup rendered="#{gestorPrincipal.consultarServicio}">
                             <ui:include src="cons_servicio.xhtml"></ui:include>
                         </h:panelGroup>  
                         
-                        <h:panelGroup rendered="#{gestorPrincipal.registroClientes}">
+                        <h:panelGroup rendered="#{gestorPrincipal.consultarDispositivo}">
                             <ui:include src="cons_dispositivo.xhtml"></ui:include>
                         </h:panelGroup>  
                         
