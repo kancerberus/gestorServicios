@@ -41,7 +41,7 @@ public class UIEmpresa {
         contextoEL = contextoJSF.getELContext();
         ef = contextoJSF.getApplication().getExpressionFactory();
         
-        String mensaje = "Guardado con exito!";
+        String mensaje1 = "Guardado con exito!";
         String mensaje2 = "No guardado!";
                  
         //Se llena la información de empresa en la instancia de la clase        
@@ -52,12 +52,12 @@ public class UIEmpresa {
          
          String actualizado = gestorEmpresa.guardarEmpresa(empresa);
          
-         if (!"1".equals(actualizado)){
-             getContextoJSF().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", mensaje2));
+         if ("1".equals(actualizado)){
+             getContextoJSF().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", mensaje1));
           }
          
         }catch (Exception e) {                  
-         getContextoJSF().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getMessage()+mensaje));
+         getContextoJSF().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getMessage()+ mensaje2));
         }        
         FacesContext context = FacesContext.getCurrentInstance(); 
         context.getExternalContext().getSessionMap().remove("empresaBean");        
