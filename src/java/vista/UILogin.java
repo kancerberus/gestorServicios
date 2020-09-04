@@ -8,11 +8,16 @@ package vista;
 import controlador.GestorUsuario;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import modelo.Menu;
+import modelo.Perfil;
 import modelo.Sesion;
 import modelo.Usuarios;
 import util.Utilidades;
@@ -29,11 +34,13 @@ public class UILogin implements Serializable {
     private List<Menu> listaMenu;
     public Utilidades util = new Utilidades();
     private GestorUsuario gestorUsuario;
-
-
+    private ArrayList<SelectItem> itemsPerfiles;
+    
     public UILogin() {        
         sesion = new Sesion();
-        sesion.setUsuario(new Usuarios());        
+        sesion.setUsuario(new Usuarios());     
+        
+        itemsPerfiles = new ArrayList<>();                
     }
 
     public void Ingresar() throws Exception {
@@ -62,6 +69,35 @@ public class UILogin implements Serializable {
         }
     }
 
+         public void cerrarSesion() {
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession s = (HttpSession) fc.getExternalContext().getSession(false);
+            s.invalidate();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("./../");
+        } catch (IOException ex) {
+            throw new RuntimeException("No se pudo redireccionar la página");
+        }
+    }
+    
+         public ArrayList<SelectItem> getItemsPerfiles() throws Exception{ 
+           try {
+                gestorUsuario = new GestorUsuario();
+                ArrayList<Perfil> listaPerfiles;
+                listaPerfiles = gestorUsuario.listarPerfiles();
+                itemsPerfiles.clear();
+                for (int i = 0; i < listaPerfiles.size(); i++) {                    
+                        itemsPerfiles.add(new SelectItem(listaPerfiles.get(i).getCod_perfil(), listaPerfiles.get(i).getNom_perfil()));
+                    }                        
+                }
+            catch (Exception ex) {
+                        Logger.getLogger(UILogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+                return itemsPerfiles;    
+    }         
+                
+    
     public String getUsuario() {
         return usuario;
     }
@@ -115,3 +151,4 @@ public class UILogin implements Serializable {
     }
 
 }
+

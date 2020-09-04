@@ -1,26 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import modelo.Usuarios;
 import bd.UsuarioDAO;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.Menu;
+import modelo.Perfil;
 
 /**
  *
  * @author carlosv
  */
-public class GestorUsuario extends Gestor implements Serializable {
-
+public class GestorUsuario extends Gestor {
+    
+    UsuarioDAO usuarioDAO; 
+     
     public GestorUsuario() throws Exception{
         super();
     }
 
+     public String guardarUsuario(Usuarios usuario) throws Exception {
+        
+         usuarioDAO = new UsuarioDAO();
+         return usuarioDAO.guardarUsuario(usuario);
+        
+    }
+    
+    public ArrayList<Perfil> listarPerfiles() throws Exception {
+        try {
+            abrirConexion();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+            return usuarioDAO.listarPerfiles();
+        } finally {
+            cerrarConexion();
+        }
+    } 
+     
+    
     public Usuarios validarUsuario(String usuario, String clave) throws Exception {
         try {
             abrirConexion();

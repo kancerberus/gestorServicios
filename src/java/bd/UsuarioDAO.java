@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import modelo.Menu;
 import modelo.Perfil;
 import modelo.SubMenu;
@@ -19,13 +21,19 @@ import modelo.Usuarios;
  *
  * @author carlosv
  */
-public class UsuarioDAO {
+public class UsuarioDAO extends GestorBD {
 
     private Connection conexion;
 
+    public UsuarioDAO() {
+       super();
+    }
+        
     public UsuarioDAO(Connection conexion) {
         this.conexion = conexion;
     }
+    
+    
 
     public Usuarios validarUsuario(String usuario, String clave) throws SQLException {
         Consulta consulta = null;
@@ -35,9 +43,9 @@ public class UsuarioDAO {
         Perfil p = null;
         try {
             consulta = new Consulta(getConexion());
-            sql = "select u.usuario,u.nom_completo,u.cod_perfil,u.cargo_usuario,u.correo_usuario,p.nombre perfil from "
+            sql = "select u.usuario,u.nom_completo,u.cod_perfil,u.cargo_usuario,u.correo_usuario,p.nom_perfil from "
                     + " usuarios u "
-                    + " inner join perfiles p using (cod_perfil) "
+                    + " inner join perfil p using (cod_perfil) "
                     + " where usuario='" + usuario.trim() + "' and clave=md5('" + clave.trim() + "');";
             rs = consulta.ejecutar(sql);
             if (rs.next()) {
@@ -47,7 +55,7 @@ public class UsuarioDAO {
                 
                 p = new Perfil();
                 p.setCod_perfil(rs.getString("cod_perfil"));
-                p.setNom_perfil(rs.getString("perfil"));                
+                p.setNom_perfil(rs.getString("nom_perfil"));                
                 u.setPerfil(p);
                 
             }
@@ -59,6 +67,35 @@ public class UsuarioDAO {
         }
     }
 
+     public ArrayList<Perfil> listarPerfiles() throws SQLException {
+        Perfil perfil;
+        ArrayList<Perfil> listaPerfiles = new ArrayList<>();
+        ResultSet rs;
+        Consulta consulta = null;
+        try {
+            consulta = new Consulta(getConexion());
+            String sql
+                    = " SELECT cod_perfil,nom_perfil "
+                    + " FROM perfil ";
+
+            rs = consulta.ejecutar(sql);
+
+            while (rs.next()) {
+                perfil = new Perfil();
+                perfil.setCod_perfil(rs.getString("cod_perfil"));
+                perfil.setNom_perfil(rs.getString("nom_perfil"));
+                listaPerfiles.add(perfil);
+            }
+            return listaPerfiles;
+
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            consulta.desconectar();
+        }
+    }  
+    
+    
     public List<Menu> listarOpcionesMenu(String usuario) throws SQLException {
         Consulta consulta = null;
         ResultSet rs;
@@ -68,7 +105,7 @@ public class UsuarioDAO {
             Menu m;
             consulta = new Consulta(getConexion());
             sql = " select "
-                    + " m.nombre nombre_menu,s.nombre nombre_submenu,imagen,s.opcion nombre_opcion"
+                    + " m.nombre nombre_menu,s.nombre nombre_submenu,imagen,s.option nombre_opcion"
                     + " from "
                     + " usuarios u "
                     + " inner join rel_perfil_submenu r using (cod_perfil) "
@@ -120,6 +157,35 @@ public class UsuarioDAO {
             consulta.desconectar();
         }
     }
+    
+    public String guardarUsuario(Usuarios usuario){
+        FacesContext contextoJSF = FacesContext.getCurrentInstance();
+        int actualizado=0;        
+        try {
+            bd.conectar(getUsuario(), getClave(), getServidor(), getPuerto(), getBasedatos());
+                                    
+            sql = "insert into usuarios"  +
+                  "(usuario,nom_completo,cargo_usuario,correo_usuario,cod_perfil,clave)" +
+                  "values ("
+                  + "'" + usuario.getUsuario() + "',"
+                  + "'" + usuario.getNom_completo() + "',"
+                  + "'" + usuario.getCorreo_usuario() + "',"
+                  + "'" + usuario.getCargo_usuario() + "',"
+                  + "'" + usuario.getPerfil().getCod_perfil() + "',"
+                  + "(select md5('" + usuario.getClave() + "')))";
+            
+            actualizado = bd.actualizar(sql);
+            
+        } catch (SQLException E) {
+            contextoJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", E.getMessage()));
+        } finally {
+            bd.desconectar();
+        }
+        return Integer.toString(actualizado);
+    }            
+    
+    
+    //getters y setters
 
     /**
      * @return the conexion
@@ -134,4 +200,15 @@ public class UsuarioDAO {
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
+      
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

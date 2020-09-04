@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 /**
@@ -13,7 +8,7 @@ public class Empresa {
     private String nom_empresa;
     private String nit_empresa;
     private String telefono_empresa;
-    private String dirección_empresa;
+    private String direccion_empresa;
     private String correo_empresa;
     
     public Empresa(){
@@ -44,12 +39,12 @@ public class Empresa {
         this.telefono_empresa = telefono_empresa;
     }
 
-    public String getDirección_empresa() {
-        return dirección_empresa;
+    public String getDireccion_empresa() {
+        return direccion_empresa;
     }
 
-    public void setDirección_empresa(String dirección_empresa) {
-        this.dirección_empresa = dirección_empresa;
+    public void setDireccion_empresa(String direccion_empresa) {
+        this.direccion_empresa = direccion_empresa;
     }
 
     public String getCorreo_empresa() {

@@ -31,8 +31,6 @@ public class Perfil {
 
     public void setNom_perfil(String nom_perfil) {
         this.nom_perfil = nom_perfil;
-    }
-    
-    
+    }        
 }
 

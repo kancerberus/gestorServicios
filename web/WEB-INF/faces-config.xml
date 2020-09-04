@@ -11,5 +11,29 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean> 
     
+      <managed-bean>
+        <managed-bean-name>gestorPrincipal</managed-bean-name>
+        <managed-bean-class>controlador.GestorPrincipal</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+    <managed-bean>
+        <managed-bean-name>empresaBean</managed-bean-name>
+        <managed-bean-class>vista.UIEmpresa</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+    <managed-bean>
+        <managed-bean-name>usuarioBean</managed-bean-name>
+        <managed-bean-class>vista.UIUsuario</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+    <managed-bean>
+        <managed-bean-name>accesoBean</managed-bean-name>
+        <managed-bean-class>vista.UIAcceso</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
     
 </faces-config>

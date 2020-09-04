@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="no-js"
       xmlns="http://www.w3.org/1999/xhtml"
@@ -8,57 +7,84 @@
 
     <h:head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Gestor Servicios</title>        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>GSS</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!--===============================================================================================-->	
+                <link rel="icon" type="resources/login/image/png" href="resources/login/images/icons/favicon.ico"/>
+        <!--===============================================================================================-->
+                <link rel="stylesheet" type="text/css" href="resources/login/vendor/bootstrap/css/bootstrap.min.css"/>
+        <!--===============================================================================================-->
+                <link rel="stylesheet" type="text/css" href="resources/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <!--===============================================================================================-->
+                <link rel="stylesheet" type="text/css" href="resources/login/vendor/animate/animate.css"/>
+        <!--===============================================================================================-->	
+                <link rel="stylesheet" type="text/css" href="resources/login/vendor/css-hamburgers/hamburgers.min.css"/>
+        <!--===============================================================================================-->
+                <link rel="stylesheet" type="text/css" href="resources/login/vendor/select2/select2.min.css"/>
+        <!--===============================================================================================-->
+                <link rel="stylesheet" type="text/css" href="resources/login/css/util.css"/>
+                <link rel="stylesheet" type="text/css" href="resources/login/css/main.css"/>
+        <!--===============================================================================================-->
                
-
     </h:head>
 
-    <h:body onload="setFoco('username')">
+    <h:body onload="setFoco('username')">                     
+            <div class="limiter">
+                    <div class="container-login100">
+                            <div class="wrap-login100">
+                                    <div class="login100-pic js-tilt" data-tilt="">
+                                            <img src="resources/login/images/img-01.png" alt="IMG"/>
+                                    </div>
 
-        <div class="page-container">
-            <h1>PRUEBA JUAN VILLA</h1>
-            <h1>SOLUTECH</h1>  
-            <br></br>
-            <br></br>            
-            <h:form>
-                    <p:growl id="growl" sticky="false" showDetail="true" life="5000" />
-                    <input name="pagIndex" value="pagIndex" type="hidden" />
-                    <table border="0" cellpadding="10">
-                        
-                        <tr><td>                                
-                                <h:outputLabel for="username" value="Usuario:   " />
-                            </td>
-                            <td>
-                                <p:inputText id="username" value="#{loginBean.usuario}" required="true" label="username" />
-                            </td>
-                        </tr>
-                        <tr><td>                                
-                                <h:outputLabel for="password" value="Clave:   "/>
-                            </td>
-                            <td>
-                                <p:password id="password" value="#{loginBean.clave}" required="true" label="password" />
-                            </td>
-                        </tr>
-                        <br></br>
-                        <br></br>                        
-                        <tr>
-                            <td colspan="2" align="center">
-                                <p:commandButton value="Entrar" update="growl" actionListener="#{loginBean.Ingresar}"  >
-                                    
-                                </p:commandButton>
-                            </td>
-                        </tr>
-                    </table>                   
-            </h:form>
-            <div class="connect">
-                
-                <p>Versión: 1.0.0</p>
-                <p>Fecha: 06/11/2019</p>
-                <div class="connect"/>
-            </div>
-        </div>
+                                    <h:form class="login1000-form validate-form">
+                                        <p:growl id="growl" sticky="false" showDetail="true" life="5000" />
+                                            <span class="login100-form-title">
+                                                    INICIO DE SESIÓN
+                                            </span>
+
+                                            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                                    <p:inputText class="input100" id="username" value="#{loginBean.usuario}" required="true" label="username" />
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                    </span>
+                                            </div>                                                                      
+
+                                            <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                                                    <p:password id="password" class="input100" value="#{loginBean.clave}" required="true" label="password" />
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                                    </span>                                 
+                                            </div>
+
+                                            <div class="container-login100-form-btn">
+                                            <p:commandButton class="login100-form-btn" value="Entrar" update="growl" actionListener="#{loginBean.Ingresar}"  >
+
+                                            </p:commandButton>
+                                            </div>
+                                    </h:form>
+                            </div>
+                    </div>
+            </div>                      
+
+            <!--===============================================================================================-->	
+                    <script src="resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+                    <script src="resources/login/vendor/bootstrap/js/popper.js"></script>
+                    <script src="resources/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+                    <script src="resources/login/vendor/select2/select2.min.js"></script>
+            <!--===============================================================================================-->
+                    <script src="resources/login/vendor/tilt/tilt.jquery.min.js"></script>
+                    <script >
+                            $('.js-tilt').tilt({
+                                    scale: 1.1
+                            })
+                    </script>
+            <!--===============================================================================================-->
+                    <script src="resources/login/js/main.js"></script>
 
     </h:body>
 
