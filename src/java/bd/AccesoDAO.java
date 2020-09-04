@@ -101,4 +101,12 @@ public class AccesoDAO extends GestorBD {
             consulta.desconectar();
         }
     }
+    
+    public ArrayList<Acceso> listarAcceso() throws SQLException {
+        Acceso acceso;
+        ArrayList<Acceso> listarAcceso = new ArrayList<>();
+        ResultSet rs;
+        Consulta consulta = null;
+        consulta = new Consulta(conexion);
+    
 }

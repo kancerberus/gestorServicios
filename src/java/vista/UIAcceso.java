@@ -52,11 +52,15 @@ public class UIAcceso implements Serializable {
         
         
         
+        
+        
         lista_acceso.clear();
         
         try {
-            
-            lista_acceso = gestorAcceso.listaAcceso();
+            nit_empresa = (String) ef.createValueExpression(contextoEL, "#{empresaBean.empresa.nit_empresa}", String.class).getValue(contextoEL);        
+            nit_subempresa = (String) ef.createValueExpression(contextoEL, "#{empresaBean.subempresa.nit_subempresa}", String.class).getValue(contextoEL);  
+                    
+            lista_acceso = gestorAcceso.listaAcceso(nit_empresa,nit_subempresa);
         }
         catch (Exception e) {
             Logger.getLogger(UIAcceso.class.getName()).log(Level.SEVERE, null, e);
