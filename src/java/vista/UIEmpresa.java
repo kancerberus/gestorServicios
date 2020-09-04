@@ -6,12 +6,18 @@
 package vista;
 
 import controlador.GestorEmpresa;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import modelo.Empresa;
-
+import modelo.SubEmpresa;
+import modelo.Menu;
 
 /**
  *
@@ -24,6 +30,11 @@ public class UIEmpresa {
     private ExpressionFactory ef;
     private GestorEmpresa gestorEmpresa;
     private Empresa empresa;
+    private SubEmpresa subempresa;
+    private List<Menu> listaMenu;
+    private ArrayList<SelectItem> itemsEmpresas;
+    private ArrayList<SelectItem> itemsSubempresas;
+    
     
     public UIEmpresa() throws Exception{  
         
@@ -32,9 +43,12 @@ public class UIEmpresa {
         ef = contextoJSF.getApplication().getExpressionFactory();
         gestorEmpresa = new GestorEmpresa();
         empresa = new Empresa();
-        
+        subempresa = new SubEmpresa();        
+        itemsEmpresas = new ArrayList<>();   
+        itemsSubempresas = new ArrayList<>();  
     }
-
+      
+   
     public void guardarEmpresa() {
         
         contextoJSF = FacesContext.getCurrentInstance();
@@ -62,31 +76,51 @@ public class UIEmpresa {
         FacesContext context = FacesContext.getCurrentInstance(); 
         context.getExternalContext().getSessionMap().remove("empresaBean");        
     }
-
     
+    
+            public ArrayList<SelectItem> getItemsEmpresa() throws Exception{ 
+           try {
+                gestorEmpresa = new GestorEmpresa();
+                ArrayList<Empresa> listaEmpresas;
+                listaEmpresas = gestorEmpresa.listarEmpresas();
+                itemsEmpresas.clear();
+                for (int i = 0; i < listaEmpresas.size(); i++) {                    
+                        itemsEmpresas.add(new SelectItem(
+                                listaEmpresas.get(i).getNit_empresa(),
+                                listaEmpresas.get(i).getNom_empresa()));
+                    }                        
+                }
+            catch (Exception ex) {
+                        Logger.getLogger(UIEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+                return itemsEmpresas;    
+    }
+            
+                      
+            public ArrayList<SelectItem> getItemsSubempresas () throws Exception{ 
+           try {
+                gestorEmpresa = new GestorEmpresa();
+                ArrayList<SubEmpresa> listarSubempresa;
+                listarSubempresa = gestorEmpresa.listarSubempresas(empresa);
+                itemsSubempresas.clear();
+                for (int i = 0; i < listarSubempresa.size(); i++) {                    
+                        itemsSubempresas.add(new SelectItem(listarSubempresa.get(i).getNit_subempresa(), listarSubempresa.get(i).getNom_empresa()));
+                    }                        
+                }
+            catch (Exception ex) {
+                        Logger.getLogger(UIEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+                return itemsSubempresas;    
+    }
+            
     public FacesContext getContextoJSF() {
-        return contextoJSF;
+           return contextoJSF;
     }
 
     public void setContextoJSF(FacesContext contextoJSF) {
-        this.contextoJSF = contextoJSF;
-    }
-
-    public ELContext getContextoEL() {
-        return contextoEL;
-    }
-
-    public void setContextoEL(ELContext contextoEL) {
-        this.contextoEL = contextoEL;
-    }
-
-    public ExpressionFactory getEf() {
-        return ef;
-    }
-
-    public void setEf(ExpressionFactory ef) {
-        this.ef = ef;
-    }        
+           this.contextoJSF = contextoJSF;
+    }   
 
     public Empresa getEmpresa() {
         return empresa;
@@ -95,6 +129,22 @@ public class UIEmpresa {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-    
-    
+
+    public void getItemsSubempresas(ArrayList<SelectItem> itemsSubempresas) {
+        this.itemsSubempresas = itemsSubempresas;
+    }
+
+    public void setItemsSubempresas(ArrayList<SelectItem> itemsSubempresas) {
+        this.itemsSubempresas = itemsSubempresas;
+    }
+
+    public SubEmpresa getSubempresa() {
+        return subempresa;
+    }
+
+    public void setSubempresa(SubEmpresa subempresa) {
+        this.subempresa = subempresa;
+    }
+        
+       
 }

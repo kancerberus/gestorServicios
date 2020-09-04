@@ -43,12 +43,15 @@ public class UIAcceso implements Serializable {
         filteredlista_acceso = new ArrayList<>();
     }
          
-    public void mostrarAccesos () throws Exception {
+    public void mostrarAccesos() throws Exception {
         
         contextoJSF = FacesContext.getCurrentInstance();
         contextoEL = contextoJSF.getELContext();
         ef = contextoJSF.getApplication().getExpressionFactory();
         gestorAcceso = new GestorAcceso();
+        
+        
+        
         lista_acceso.clear();
         
         try {

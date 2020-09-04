@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import modelo.Menu;
 import modelo.Perfil;
 import modelo.SubMenu;
@@ -19,13 +21,19 @@ import modelo.Usuarios;
  *
  * @author carlosv
  */
-public class UsuarioDAO {
+public class UsuarioDAO extends GestorBD {
 
     private Connection conexion;
 
+    public UsuarioDAO() {
+       super();
+    }
+        
     public UsuarioDAO(Connection conexion) {
         this.conexion = conexion;
     }
+    
+    
 
     public Usuarios validarUsuario(String usuario, String clave) throws SQLException {
         Consulta consulta = null;
@@ -59,6 +67,35 @@ public class UsuarioDAO {
         }
     }
 
+     public ArrayList<Perfil> listarPerfiles() throws SQLException {
+        Perfil perfil;
+        ArrayList<Perfil> listaPerfiles = new ArrayList<>();
+        ResultSet rs;
+        Consulta consulta = null;
+        try {
+            consulta = new Consulta(getConexion());
+            String sql
+                    = " SELECT cod_perfil,nom_perfil "
+                    + " FROM perfil ";
+
+            rs = consulta.ejecutar(sql);
+
+            while (rs.next()) {
+                perfil = new Perfil();
+                perfil.setCod_perfil(rs.getString("cod_perfil"));
+                perfil.setNom_perfil(rs.getString("nom_perfil"));
+                listaPerfiles.add(perfil);
+            }
+            return listaPerfiles;
+
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            consulta.desconectar();
+        }
+    }  
+    
+    
     public List<Menu> listarOpcionesMenu(String usuario) throws SQLException {
         Consulta consulta = null;
         ResultSet rs;
@@ -120,6 +157,35 @@ public class UsuarioDAO {
             consulta.desconectar();
         }
     }
+    
+    public String guardarUsuario(Usuarios usuario){
+        FacesContext contextoJSF = FacesContext.getCurrentInstance();
+        int actualizado=0;        
+        try {
+            bd.conectar(getUsuario(), getClave(), getServidor(), getPuerto(), getBasedatos());
+                                    
+            sql = "insert into usuarios"  +
+                  "(usuario,nom_completo,cargo_usuario,correo_usuario,cod_perfil,clave)" +
+                  "values ("
+                  + "'" + usuario.getUsuario() + "',"
+                  + "'" + usuario.getNom_completo() + "',"
+                  + "'" + usuario.getCorreo_usuario() + "',"
+                  + "'" + usuario.getCargo_usuario() + "',"
+                  + "'" + usuario.getPerfil().getCod_perfil() + "',"
+                  + "(select md5('" + usuario.getClave() + "')))";
+            
+            actualizado = bd.actualizar(sql);
+            
+        } catch (SQLException E) {
+            contextoJSF.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", E.getMessage()));
+        } finally {
+            bd.desconectar();
+        }
+        return Integer.toString(actualizado);
+    }            
+    
+    
+    //getters y setters
 
     /**
      * @return the conexion
@@ -134,4 +200,15 @@ public class UsuarioDAO {
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
+      
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

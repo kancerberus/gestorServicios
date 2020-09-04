@@ -1,32 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import bd.EmpresaDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import modelo.Empresa;
+import modelo.SubEmpresa;
 
 /**
  *
  * @author JuanVilla
  */
-public class GestorEmpresa {
+public class GestorEmpresa extends Gestor {
     
     
     EmpresaDAO empresaDAO;
     
     
-    public GestorEmpresa(){
-        empresaDAO = new EmpresaDAO();
-        
-        
+    public GestorEmpresa()throws Exception{
+        super();
     }
+  
     
    public String guardarEmpresa(Empresa empresa) throws SQLException {
-        return empresaDAO.guardarEmpresa(empresa);
-    }
+       
+       empresaDAO = new EmpresaDAO(); 
+       return empresaDAO.guardarEmpresa(empresa);
+   }
+   
+    public ArrayList<Empresa> listarEmpresas() throws Exception {
+        try {
+            abrirConexion();
+            EmpresaDAO empresaDAO = new EmpresaDAO(conexion);
+            return empresaDAO.listarEmpresas();
+        } finally {
+            cerrarConexion();
+        }
+    }  
+    
+    public ArrayList<SubEmpresa> listarSubempresas (Empresa empresa) throws Exception {
+        try {
+            abrirConexion();
+            EmpresaDAO empresaDAO = new EmpresaDAO(conexion);
+            return empresaDAO.listarSubempresas(empresa);
+        } finally {
+            cerrarConexion();
+        }
+    } 
         
 }

@@ -1,22 +1,75 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first1">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
-            </f:facet>
-        </h:head>
-
-        <h:body>
-                HELLO A TODOS, ACCESOS DE EMPRESAS!
-        </h:body>
-
-    </f:view>
+    <h:body>
+        <ui:composition>
+           <h:form id="RegistroAcceso">
+                <p:growl id="msgMasc" showDetail="true" life="5000" />
+               
+                <p:panel header="REGISTRO NUEVO ACCESO" id="RegistroAcceso" style="width: 1000px;" >
+                    <table>
+                        <h:panelGrid columns="2" cellspacing="10">
+                        <p:panel header="Seleccione" style="width: 900px; font-size: 75%;">
+                   
+                            
+                            <h:outputLabel for="items_empresa" value="Seleccione Empresa: "/>
+                            <p:selectOneMenu value="#{empresaBean.empresa.nit_empresa}" id="items_empresa" style="font-weight: bold;">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />                                                
+                            <f:selectItems value="#{empresaBean.itemsEmpresa}"/>      
+                            <p:ajax update="items_subempresa"/>
+                            </p:selectOneMenu>  
+                            
+                            <h:outputLabel for="items_subempresa" value="Seleccione Subempresa: "/>
+                            <p:selectOneMenu value="#{empresaBean.subempresa.nit_subempresa}" id="items_subempresa" style="font-weight: bold;">
+                            <f:selectItem itemLabel="Seleccione..." itemValue="" />                                                
+                            <f:selectItems value="#{empresaBean.itemsSubempresas}"/>                            
+                            </p:selectOneMenu>
+                        
+                        </p:panel>
+                        
+                        </h:panelGrid>
+                        
+                        <table cellpadding="5">
+                            <tr>
+                                <td align="center">
+                                    
+                                    <p:panel header="DETALLES DEL ACCESO" style="margin-bottom:25px; margin-top:10px;" >
+                                        <h:panelGrid id="Detalles_Acceso" columns="4" style="width: 900px; font-size: 75%;">
+                                            
+                                            <h:outputText value="NOMBRE ACCESO" style="font-weight: bold;" />
+                                            <p:inputText id="nomAcceso" value="#{accesoBean.acceso.nom_acceso}" style="width: 200px;" required="true"/>
+                                            
+                                            <h:outputText value="IP LOCAL" style="font-weight: bold;" />
+                                            <p:inputText id="ip_Local" value="#{accesoBean.acceso.ip_local}" style="width: 150px;" required="true"/>
+                                            
+                                            <h:outputText value="IP EXTERNA" style="font-weight: bold;" />
+                                            <p:inputText id="ip_Externa" value="#{accesoBean.acceso.ip_externa}" style="width: 150px;" required="true"/>
+                                            
+                                            <h:outputText value="USUARIO" style="font-weight: bold;" />
+                                            <p:inputText id="user_acceso" value="#{accesoBean.acceso.user_acceso}" style="width: 150px;" required="true"/>
+                                            
+                                            <h:outputText value="CONTRASEÑA" style="font-weight: bold;" />
+                                            <p:inputText id="contraseña_acceso" value="#{accesoBean.acceso.contraseña}" style="width: 150px;" required="true"/>
+                                        
+                                        </h:panelGrid>
+                                        
+                                        <tr>
+                                            <td align="center"> <p:commandButton update="msgMasc,Detalles_Acceso" type="submit" value="Guardar" id="guardar" icon="ui-icon-check" actionListener="#{accesoBean.guardarAcceso()}"/></td>
+                                        </tr>
+                                    
+                                    </p:panel>
+                                </td>
+                            </tr>
+                        </table>
+                    </table>
+                </p:panel>                 
+            </h:form>
+        </ui:composition>
+    </h:body>
+    
 </html>
-

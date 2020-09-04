@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -5,19 +6,59 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first1">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
-            </f:facet>
-        </h:head>
+  <body>
+        <ui:composition>
+            <h:form>
+                <p:growl id="msgMasc" showDetail="true" life="5000" />
+                <p:panel header="REGISTRO DE NUEVOS USUARIOS" id="pnlCrearUsuario" style="width: 1000px;" >
+                    <table>
+                        <tr><td>
+                                <p:fieldset legend="DATOS DE NUEVO USUARIO" style="margin-bottom:10px; margin-top:10px;" >
+                                    <table cellpadding="5">                        
+                                        <tr>
+                                            <td align="center">
+                                                <p:panelGrid id="tblIngresoUsuario" columns="2" style="width: 900px; font-size: 75%;">   
+                                                    
+                                                    <h:outputText value="NOMBRE COMPLETO DE FUNCIONARIO" style="font-weight: bold;" />
+                                                    <p:inputText id="nom_completo" value="#{usuarioBean.usuario.nom_completo}" style="width: 350px;" required="true"/>                                                  
+                                                    
+                                                    <h:outputText value="CARGO QUE DESEMPEÑA" style="font-weight: bold;" />
+                                                    <p:inputText id="cargo_usuario" value="#{usuarioBean.usuario.cargo_usuario}" style="width: 350px;" required="true"/>
+                                                    
+                                                    <h:outputText value="CORREO ELECTRONICO" style="font-weight: bold;" />
+                                                    <p:inputText id="correo_usuario" value="#{usuarioBean.usuario.correo_usuario}" style="width: 350px;" required="true"/>
+                                                    
+                                                    <h:outputText value="NOMBRE DE USUARIO" style="font-weight: bold;" />
+                                                    <p:inputText id="usuario" value="#{usuarioBean.usuario.usuario}" style="width: 350px;" required="true"/>
+                                                    
+                                                    <h:outputText value="CONTRASEÑA" style="font-weight: bold;" />
+                                                    <p:password id="pwd1" value="#{usuarioBean.usuario.clave}" match="pwd2" label="Password 1" 
+                                                                required="true" />
 
-        <h:body>
-                HELLO USUARIOS!!!!
-                
-        </h:body>
+                                                    <h:outputText value="REPETIR CONTRASEÑA" style="font-weight: bold;" />
+                                                    <p:password id="pwd2" value="#{usuarioBean.usuario.clave}" label="Password 2" required="true" />
+                                                    
+                                                    <h:outputText value="SELECCIONE UN PERFIL" style="font-weight: bold;" />
+                                                    <p:selectOneMenu value="#{usuarioBean.usuario.perfil.cod_perfil}" id="items_perfiles" style="font-weight: bold;">
+                                                    <f:selectItems   value="#{loginBean.itemsPerfiles}"/> 
+                                                    </p:selectOneMenu>  
+                                                    
+                                                </p:panelGrid>                                                                                               
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p:fieldset>                               
+                            </td>                            
+                        </tr>                               
+                        <tr>
+                            <td align="center"><p:commandButton update="msgMasc,tblIngresoUsuario" type="submit" value="Guardar"  
+                                                id="guardar" actionListener="#{usuarioBean.guardarUsuario()}" /></td>                                              
+                        </tr>
+                    </table>   
+                </p:panel>   
+            </h:form>
+        </ui:composition>
+    </body>
 
-    </f:view>
+
 </html>
-
