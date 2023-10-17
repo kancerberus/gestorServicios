@@ -1,2 +1,2 @@
 # gestorServicios
-Desarrollo encargado de visualizar, modificar y quitar los accesos de diferentes empresa y a su vez crear actas de visita. 
+Development in charge of viewing, modifying and removing the accesses of different companies and in turn creating visit minutes.
